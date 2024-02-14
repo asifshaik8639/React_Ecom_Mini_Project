@@ -16,30 +16,34 @@ function SideDrawer() {
     <div className='side-drawer-container'>
         <div className='side-drawer-item'>
             <Link component={RouterLink} to="/home" relative="path" onClick={(e) => onIconClickHandler(e) } >
-                <HomeIcon fontSize='large' /> 
+                <HomeIcon fontSize='large' />
+                <label htmlFor=""> Home</label> 
             </Link>
-            <label htmlFor="">Home</label>
+            
         </div>
 
         <div className='side-drawer-item'>
             <Link component={RouterLink} to="/wip" relative="path" onClick={(e) => onIconClickHandler(e) }>
-                <ContactsIcon fontSize='large'/> 
+                <ContactsIcon fontSize='large'/>
+                <label htmlFor=""> User Profile</label>
             </Link>
-            <label htmlFor="">User Profile</label>
+            
         </div>
 
         <div className='side-drawer-item'>
             <Link component={RouterLink} to="/wip" relative="path" onClick={(e) => onIconClickHandler(e) }>
-                <ShoppingCartIcon fontSize='large'/> 
+                <ShoppingCartIcon fontSize='large'/>
+                <label htmlFor=""> Cart</label>
             </Link>
-            <label htmlFor="">Cart</label>
+            
         </div>
 
         <div className='side-drawer-item'>
             <Link component={RouterLink} to="/wip" relative="path" onClick={(e) => onIconClickHandler(e) }>
-                <SettingsIcon fontSize='large'/> 
+                <SettingsIcon fontSize='large'/>
+                <label htmlFor=""> Settings</label>
             </Link>
-            <label htmlFor="">Settings</label>
+            
         </div>
     </div>
   )

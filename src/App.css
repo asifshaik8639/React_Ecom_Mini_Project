@@ -259,11 +259,14 @@ body {
 
 .side-drawer-container .side-drawer-item {
    display: flex;
+   margin-top: 25px;;
 }
 
-.side-drawer-container .side-drawer-item label {
-  padding-top: 10px;
+.side-drawer-container .side-drawer-item a {
+  display: flex;
+  flex-direction: row;
   color: wheat;
+  text-decoration: none;
 }
 
 .side-drawer-container .MuiLink-button  {
@@ -272,6 +275,11 @@ body {
     display: inline;
     margin: 5;
 
+}
+
+.side-drawer-container .side-drawer-item a label {
+  padding-left: 5px;;
+  cursor: pointer;
 }
 
 .side-drawer-container a {
