@@ -4,16 +4,18 @@ import './App.css';
 import Home from './components/Home';
 import DrawerList from './components/material-ui/DrawerList';
 import UIGrid from './components/material-ui/UIGrid';
+import PaginationContextWrapper from './context/PaginationContextWrapper';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      
-      <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-      </Routes>
+      <PaginationContextWrapper>
+        <Routes>
+          <Route path="/" element={<Home></Home>}></Route>
+        </Routes>
+      </PaginationContextWrapper>
     </>
   )
 }

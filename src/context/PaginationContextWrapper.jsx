@@ -6,15 +6,8 @@ function PaginationContextWrapper({children}) {
   const [pageSize, setPageSize] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const contextData = {
-    pageSize,
-    setPageSize,
-    currentPage,
-    setCurrentPage
-  };
-
   return (
-    <PaginationContext.Provider value={contextData}>
+    <PaginationContext.Provider value={{ pageSize, setPageSize, currentPage, setCurrentPage }}>
         {children}
     </PaginationContext.Provider>
   )
@@ -22,6 +15,6 @@ function PaginationContextWrapper({children}) {
 
 export default PaginationContextWrapper;
 
-export const paginationUseContext = () => {
+export const usePaginationContext = () => {
     return useContext(PaginationContext);
 } 

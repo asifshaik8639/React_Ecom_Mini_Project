@@ -7,7 +7,7 @@ import SideDrawer from './SideDrawer';
 import Button from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import PaginationContextWrapper, { paginationUseContext } from '../context/PaginationContextWrapper';
+import { usePaginationContext } from '../context/PaginationContextWrapper';
 
 
 function Home() {
@@ -16,9 +16,7 @@ function Home() {
     const resultDataRef = useRef(null);
     const resultSubsequentRef = useRef(null);
     let isMenuOn = false;
-
-    const [pageSize, setPageSize] = useState(6);
-    const [currentPage, setCurrentPage] = useState(1);
+    const { pageSize, setPageSize, currentPage, setCurrentPage } = usePaginationContext();
     const [offset, setCurrentOffSet]= useState(0);
 
     const getProducts = () => {
