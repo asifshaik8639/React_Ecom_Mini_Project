@@ -257,6 +257,15 @@ body {
     overflow-x: hidden;
 }
 
+.side-drawer-container .side-drawer-item {
+   display: flex;
+}
+
+.side-drawer-container .side-drawer-item label {
+  padding-top: 10px;
+  color: wheat;
+}
+
 .side-drawer-container .MuiLink-button  {
     font-size: 15px;
     width: 100%;
@@ -330,11 +339,26 @@ body {
 }
 
 .context-cls {
-
   background-color: green;
   padding: 10px;
   color: white;
 }
+
+.nav-bar-cls  {
+  display: flex;
+  justify-content: space-between;
+  background-color: green;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.nav-bar-cls a:focus  {
+  transform: scale(1.5);
+}
+
+
+
 
 
 

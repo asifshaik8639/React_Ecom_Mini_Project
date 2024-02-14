@@ -1,0 +1,38 @@
+.temp-page-container {
+    border: 1px solid wheat;
+    background-color: wheat;
+    width: 100%;
+    height: 100vh;
+   
+}
+
+.temp-page-container .wip-container {
+        background-color: wheat;
+        padding: 20px;
+        border-radius: 15px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+}
+
+.wip-container a {
+    vertical-align: middle;
+}
+
+.wip-container label {
+    font-size: 20px;
+}
+
+.wip-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.wip-note {
+    position: absolute;
+    bottom: 40px;;
+
+}

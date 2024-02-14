@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import debounce from '../utils/debounce';
 import FilterLabel from './FilterLabel';
@@ -11,22 +11,30 @@ import { usePaginationContext } from '../context/PaginationContextWrapper';
 
 
 function Home() {
-    let [data, setData] = useState([]);
+    
     const [inputSearchText, setInputSearchText] = useState('');
-    const resultDataRef = useRef(null);
-    const resultSubsequentRef = useRef(null);
     let isMenuOn = false;
-    const { pageSize, setPageSize, currentPage, setCurrentPage } = usePaginationContext();
-    const [offset, setCurrentOffSet]= useState(0);
+    let { pageSize, 
+            setPageSize, 
+            currentPage, 
+            setCurrentPage, 
+            offset, 
+            setCurrentOffSet,
+            data,
+            setData,
+            resultDataRef,
+            resultSubsequentRef  } = usePaginationContext();
 
     const getProducts = () => {
         try {
             fetch('https://fakestoreapi.com/products')
             .then(res=>res.json())
             .then((response)=> {
-                resultDataRef.current = response;
-                resultSubsequentRef.current = response;
-                setData(response);
+               
+                    resultDataRef.current = response;
+                    resultSubsequentRef.current = response;
+                    setData(response);
+                
             });
         }catch(error) {
             console.error(error);
@@ -34,7 +42,9 @@ function Home() {
     }
 
   useEffect(()=>{
-    getProducts();
+    if(Array.isArray(data) && data.length === 0) {
+        getProducts();
+    }
   },[]);
 
   const filterDataBasedOnSearchInput = (prop = 'title', searchText = '') => {
@@ -158,8 +168,8 @@ function Home() {
   if(Array.isArray(data) && data.length > 0) {
     console.log('onPagination offset', offset);
     console.log('onPagination pageSize', pageSize);
-    console.log('onPagination current', resultDataRef.current);
-    let paginationResult = resultDataRef.current.slice();
+    console.log('onPagination current', data);
+    let paginationResult = data.slice();
     console.log('onPagination data', paginationResult.slice(offset, currentPage * pageSize));
     data = paginationResult.slice(offset, currentPage * pageSize);
 
@@ -189,7 +199,8 @@ function Home() {
                             (
                                 // Display skeletons while data is loading
                                 Array.from({ length: 6 }).map((_, index) => (
-                                    <div className='flex-item-cls'>
+                                    <div className='flex-item-cls'
+                                         key={`${index}flex-item`} >
                                         <Skeleton key={index} variant="rectangular" width={200} 
                                         height={300} style={{ margin: 10 }} />
                                     </div>
@@ -201,14 +212,17 @@ function Home() {
                         <div key='filter-data' className='flexContainer'>
                             {
                                 (data?.map((item, index)=> {
-                                    return  <div className='flex-item-cls'>
+                                    return  <div className='flex-item-cls'
+                                                 key={`${index}flex-item`} >
                                                 <img className='prod-img-cls' 
                                                     key={`${index}image`} 
                                                     src={item.image} />
-                                                <div className='prodcut-title-cls'>
+                                                <div className='prodcut-title-cls'
+                                                    key={`${index}title`} >
                                                     {item.title}
                                                 </div>
-                                                <div className='prodcut-price-cls'>
+                                                <div className='prodcut-price-cls'
+                                                    key={`${index}price`}>
                                                     {`Price: $ ${item.price}`}
                                                 </div>
                                             </div>
