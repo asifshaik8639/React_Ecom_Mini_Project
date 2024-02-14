@@ -3,23 +3,17 @@
     background-color: wheat;
     width: 100%;
     height: 100vh;
-   
+}
+
+.temp-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .temp-page-container .wip-container {
-        background-color: wheat;
-        padding: 20px;
-        border-radius: 15px;
-        color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-}
-
-.wip-container a {
-    vertical-align: middle;
+    position: relative;
 }
 
 .wip-container label {
@@ -29,10 +23,13 @@
 .wip-image {
   max-width: 100%;
   height: auto;
+  border-radius: 15px;;
 }
 
 .wip-note {
     position: absolute;
-    bottom: 40px;;
-
+    color: brown;
+    bottom: 10px;
+    text-align: center;
+    left: 15px;;
 }
