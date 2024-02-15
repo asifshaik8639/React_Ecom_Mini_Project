@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import WIP from './WIP';
 
 function NotFound() {
   return (
-    <div>NotFound</div>
+    <WIP/>
   )
 }
 

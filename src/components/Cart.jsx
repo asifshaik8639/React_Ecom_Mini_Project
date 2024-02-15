@@ -1,8 +1,8 @@
 import React from 'react'
-
+import WIP from './WIP';
 const Cart = () => {
   return (
-    <div>Cart</div>
+    <WIP/>
   )
 }
 

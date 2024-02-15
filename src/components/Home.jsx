@@ -3,27 +3,55 @@ import SearchBar from './SearchBar';
 import debounce from '../utils/debounce';
 import FilterLabel from './FilterLabel';
 import { Skeleton } from '@mui/material';
-import SideDrawer from './SideDrawer';
+import { usePaginationContext } from '../context/PaginationContextWrapper';
 import Button from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { usePaginationContext } from '../context/PaginationContextWrapper';
 
 
-function Home() {
-    
+const Home = () => {
+
     const [inputSearchText, setInputSearchText] = useState('');
     let isMenuOn = false;
+
     let { pageSize, 
-            setPageSize, 
-            currentPage, 
-            setCurrentPage, 
-            offset, 
-            setCurrentOffSet,
-            data,
-            setData,
-            resultDataRef,
-            resultSubsequentRef  } = usePaginationContext();
+        setPageSize, 
+        currentPage, 
+        setCurrentPage, 
+        offset, 
+        setCurrentOffSet,
+        data,
+        setData,
+        resultDataRef,
+        resultSubsequentRef,
+        isSideBarOpen,
+        setSideBarOpen  } = usePaginationContext();
+
+    const onSortHandler = (bool) => {
+        setInputSearchText('');
+        console.log('in onSortHandler', bool);
+        let result = resultSubsequentRef.current.slice();
+        setData([]);
+        if(bool) {
+            const sortedProductsAsc = sortArrayObj(true,result, 'title');
+            resultDataRef.current = sortedProductsAsc;
+            setData(resultDataRef.current);
+        } else {
+            const sortedProductsDesc = sortArrayObj(false,result, 'title');
+            resultDataRef.current = sortedProductsDesc;
+            setData(resultDataRef.current);
+        }
+        setCurrentPage(1);
+        setCurrentOffSet(0);
+    }
+    const onMenuClickHandler = (e) => {
+        console.log('onMenuClickHandler isMenuOn', isSideBarOpen);
+        if(isSideBarOpen) {
+            setSideBarOpen(false);
+        } else {
+            setSideBarOpen(true);
+        }
+    }
 
     const getProducts = () => {
         try {
@@ -121,37 +149,6 @@ function Home() {
 }
 
 
-  const onSortHandler = (bool) => {
-    setInputSearchText('');
-    console.log('in onSortHandler', bool);
-    let result = resultSubsequentRef.current.slice();
-    setData([]);
-    if(bool) {
-        const sortedProductsAsc = sortArrayObj(true,result, 'title');
-        resultDataRef.current = sortedProductsAsc;
-        setData(resultDataRef.current);
-    } else {
-        const sortedProductsDesc = sortArrayObj(false,result, 'title');
-        resultDataRef.current = sortedProductsDesc;
-        setData(resultDataRef.current);
-    }
-    setCurrentPage(1);
-    setCurrentOffSet(0);
-  }
-
-  const onMenuClickHandler = (e) => {
-    console.log('onMenuClickHandler',e.target);
-    isMenuOn = !isMenuOn; // Toggle
-    if(isMenuOn) {
-        document.getElementById("appSideNav").style.flex = "20%";
-    } else {
-        document.getElementById("appSideNav").style.flex = "0";
-    }
-  }
-
-  const onIconClickHandler = (e) => {
-    console.log('on sidebar onIconClickHandler',e.target);
-  }
 
   const onPaginationPrevious = (event) => {
     console.log('onPaginationPrevious', offset-pageSize)
@@ -172,96 +169,81 @@ function Home() {
     let paginationResult = data.slice();
     console.log('onPagination data', paginationResult.slice(offset, currentPage * pageSize));
     data = paginationResult.slice(offset, currentPage * pageSize);
-
   }
 
-
   return (
-         
-          <div className='app-container'>
-
-            <div id="appSideNav" className='fixed-side-bar-container'>
-                <SideDrawer onIconClickHandler={onIconClickHandler}></SideDrawer>
-            </div>
-
-            <div className='main-container'>
-                <SearchBar onSortHandler={onSortHandler}
-                           onMenuClickHandler={onMenuClickHandler}
-                    sendinputTextVal={(searchTextVal) => setInputSearchText(searchTextVal.trim())}
-                />
-
-                <FilterLabel data={resultSubsequentRef?.current} onCategoryFilterHandler={onCategoryFilterHandler}/>
-                <div>
-                    {
-                        data === null ?
-                        <div key='filter-data' className='flexContainer'>
-                        {
-                            (
-                                // Display skeletons while data is loading
-                                Array.from({ length: 6 }).map((_, index) => (
-                                    <div className='flex-item-cls'
-                                         key={`${index}flex-item`} >
-                                        <Skeleton key={index} variant="rectangular" width={200} 
-                                        height={300} style={{ margin: 10 }} />
-                                    </div>
-                                ))
-                            )
-                        }
-                        </div>
-                        :
-                        <div key='filter-data' className='flexContainer'>
-                            {
-                                (data?.map((item, index)=> {
-                                    return  <div className='flex-item-cls'
-                                                 key={`${index}flex-item`} >
-                                                <img className='prod-img-cls' 
-                                                    key={`${index}image`} 
-                                                    src={item.image} />
-                                                <div className='prodcut-title-cls'
-                                                    key={`${index}title`} >
-                                                    {item.title}
-                                                </div>
-                                                <div className='prodcut-price-cls'
-                                                    key={`${index}price`}>
-                                                    {`Price: $ ${item.price}`}
-                                                </div>
-                                            </div>
-                                }))
-                            }
-                        </div>
-                    }
-
+    <>
+        <SearchBar onSortHandler={onSortHandler}
+                onMenuClickHandler={onMenuClickHandler}
+            sendinputTextVal={(searchTextVal) => setInputSearchText(searchTextVal.trim())}
+        />
+        <FilterLabel data={resultSubsequentRef?.current} onCategoryFilterHandler={onCategoryFilterHandler}/>
+        <div>
+            {
+                data === null ?
+                <div key='filter-data' className='flexContainer'>
+                {
+                    (
+                        // Display skeletons while data is loading
+                        Array.from({ length: 6 }).map((_, index) => (
+                            <div className='flex-item-cls'
+                                key={`${index}flex-item`} >
+                                <Skeleton key={index} variant="rectangular" width={200} 
+                                height={300} style={{ margin: 10 }} />
+                            </div>
+                        ))
+                    )
+                }
                 </div>
-
+                :
+                <div key='filter-data' className='flexContainer'>
                     {
-                        data?.length > 0 ?
-                        <div className='pagination-container'>
-                            <Button className='pagination-left-btn' 
-                                    onClick={(e) => onPaginationPrevious(e)}
-                                    disabled={ offset <= 0 ? true : false}>
-                                <ChevronLeftIcon fontSize='large' ></ChevronLeftIcon>
-                            </Button>
-                            
-                            <div className='current-page'>{currentPage}</div>
-
-                            <Button className='pagination-right-btn' 
-                                    onClick={(e) => onPaginationNext(e)}
-                                    disabled={ 
-                                        pageSize >=  (resultDataRef?.current?.length - offset) ? true : false}>
-                                <ChevronRightIcon fontSize='large'></ChevronRightIcon>
-                            </Button>
-                        </div>
-                        : 
-                        <div className='no-data-search'>
-                            No data for the selected Search..
-                        </div>
-
+                        (data?.map((item, index)=> {
+                            return  <div className='flex-item-cls'
+                                        key={`${index}flex-item`} >
+                                        <img className='prod-img-cls' 
+                                            key={`${index}image`} 
+                                            src={item.image} />
+                                        <div className='prodcut-title-cls'
+                                            key={`${index}title`} >
+                                            {item.title}
+                                        </div>
+                                        <div className='prodcut-price-cls'
+                                            key={`${index}price`}>
+                                            {`Price: $ ${item.price}`}
+                                        </div>
+                                    </div>
+                        }))
                     }
+                </div>
+            }
 
+        </div>
+        {
+            data?.length > 0 ?
+            <div className='pagination-container'>
+                <Button className='pagination-left-btn' 
+                        onClick={(e) => onPaginationPrevious(e)}
+                        disabled={ offset <= 0 ? true : false}>
+                    <ChevronLeftIcon fontSize='large' ></ChevronLeftIcon>
+                </Button>
+                
+                <div className='current-page'>{currentPage}</div>
+
+                <Button className='pagination-right-btn' 
+                        onClick={(e) => onPaginationNext(e)}
+                        disabled={ 
+                            pageSize >=  (resultDataRef?.current?.length - offset) ? true : false}>
+                    <ChevronRightIcon fontSize='large'></ChevronRightIcon>
+                </Button>
             </div>
-
-          </div>
-
-        );
+            : 
+            <div className='no-data-search'>
+                No data for the selected Search..
+            </div>
+        }
+    </>
+  )
 }
-export default Home;
+
+export default Home

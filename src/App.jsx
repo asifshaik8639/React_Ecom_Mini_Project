@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import {Routes, Route, Navigate} from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
+import DynamicParentContainer from './components/DynamicParentContainer';
 import PaginationContextWrapper from './context/PaginationContextWrapper';
 import NotFound from './components/NotFound';
 import User from './components/User';
-import Cart from './components/Cart';
 import Settings from './components/Settings';
+import Cart from './components/Cart';
 import WIP from './components/WIP';
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
     <>
       <PaginationContextWrapper>
         <Routes>
-          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/" element={<DynamicParentContainer></DynamicParentContainer>}></Route>
           <Route path="/user" element={<User></User>}></Route>
+          {/* default case */}
           <Route path="/home" element={ <Navigate to="/" />}></Route>
           <Route path="/cart" element={<Cart></Cart>}></Route>
           <Route path="/settings" element={<Settings></Settings>}></Route>

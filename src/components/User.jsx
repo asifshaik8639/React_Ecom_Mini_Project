@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import WIP from './WIP';
 
 const User = () => {
   return (
-    <div>User</div>
+    <WIP/>
   )
 }
 

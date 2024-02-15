@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import WIP from './WIP';
 
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <WIP/>
   )
 }
 

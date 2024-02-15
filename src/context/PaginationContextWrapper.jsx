@@ -1,4 +1,5 @@
 import React, {createContext, useContext, useState, useRef} from 'react';
+import Home from '../components/Home';
 
 const PaginationContext = createContext();
 
@@ -9,6 +10,9 @@ function PaginationContextWrapper({children}) {
   const [data, setData] = useState([]);
   const resultDataRef = useRef(null);
   const resultSubsequentRef = useRef(null);
+  const[isSideBarOpen, setSideBarOpen] = useState(false);
+
+  const [selectedComponent, setSelectedComponent] = useState(<Home/>);
 
   let context = {
     pageSize, 
@@ -20,7 +24,11 @@ function PaginationContextWrapper({children}) {
     data,
     setData,
     resultDataRef,
-    resultSubsequentRef
+    resultSubsequentRef,
+    selectedComponent,
+    setSelectedComponent,
+    isSideBarOpen,
+    setSideBarOpen
   }
 
 
