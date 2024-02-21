@@ -2,9 +2,11 @@ import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import HomeIcon from '@mui/icons-material/Home';
+// import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ShopIcon from '@mui/icons-material/Shop';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
 function SideDrawer({onIconClickHandler}) {
 
@@ -12,8 +14,16 @@ function SideDrawer({onIconClickHandler}) {
     <div className='side-drawer-container'>
         <div className='side-drawer-item'>
             <Link name="Home" onClick={(e) => onIconClickHandler(e) } >
-                <HomeIcon fontSize='large' />
-                <label htmlFor=""> Home</label> 
+                <ShopIcon fontSize='large' />
+                <label htmlFor=""> Shopping</label> 
+            </Link>
+            
+        </div>
+
+        <div className='side-drawer-item'>
+            <Link name="Movies" onClick={(e) => onIconClickHandler(e) } >
+                <LocalMoviesIcon fontSize='large' />
+                <label htmlFor=""> Movies</label> 
             </Link>
             
         </div>

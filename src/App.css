@@ -51,6 +51,7 @@ body {
 
 .flex-item-cls:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .search-bar-container {
@@ -134,6 +135,11 @@ body {
   -webkit-transition: height 1s ease-in-out;
   transition: height 1s ease-in-out;
   opacity: 0.6;
+  cursor: pointer;
+}
+
+.align-center-cls {
+  justify-content: center;
 }
 
 .filter-label-cls {
@@ -363,6 +369,13 @@ body {
 
 .nav-bar-cls a:focus  {
   transform: scale(1.5);
+}
+
+.movies-list-container-cls {
+  border: 1px solid wheat;
+  padding: 15px;
+  margin: 30px;
+  border-radius: 15px;
 }
 
 

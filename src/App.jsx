@@ -8,6 +8,7 @@ import User from './components/User';
 import Settings from './components/Settings';
 import Cart from './components/Cart';
 import WIP from './components/WIP';
+import Movies from './components/Movies';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +24,7 @@ function App() {
           <Route path="/cart" element={<Cart></Cart>}></Route>
           <Route path="/settings" element={<Settings></Settings>}></Route>
           <Route path="/wip" element={<WIP></WIP>}></Route>
+          <Route path="/movies" element={<Movies></Movies>}></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </PaginationContextWrapper>

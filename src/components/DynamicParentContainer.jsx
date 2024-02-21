@@ -15,6 +15,7 @@ import User from './User';
 import Settings from './Settings';
 import Cart from './Cart';
 import WIP from './WIP';
+import Movies from './Movies';
 
 const HomeComponent = () => <Home/>;
 const NotFoundComponent = () => <NotFound/>;
@@ -22,6 +23,7 @@ const UserComponent = () => <User/>;
 const SettingsComponent = () => <Settings/>;
 const CartComponent = () => <Cart/>;
 const WIPComponent = () => <WIP/>;
+const MoviesComponent = () => <Movies/>;
 
 const componentMap = {
     Home: HomeComponent,
@@ -29,6 +31,7 @@ const componentMap = {
     User: UserComponent,
     Settings: SettingsComponent,
     Cart: CartComponent,
+    Movies: MoviesComponent,
     WIP: WIPComponent
 };
 

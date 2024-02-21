@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import HomeIcon from '@mui/icons-material/Home';
 import workInProgressImage from '../assets/wip.jpg';
 import '../assets/temp.css';
 
