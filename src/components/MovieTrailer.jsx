@@ -17,7 +17,12 @@ const MovieTrailer = ({ videoId }) => {
   
   return (
       <div className='video-container'>
-        <YouTube videoId={videoId} opts={opts} />
+        {
+          videoId !== null ? 
+          <YouTube videoId={videoId} opts={opts} />
+          : <label>Not Available at the moment</label>
+        }
+        
       </div>
   );
 };

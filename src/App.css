@@ -378,6 +378,18 @@ body {
   border-radius: 15px;
 }
 
+.MuiDialogContent-root.css-ypiqx9-MuiDialogContent-root {
+  padding: 50px 100px;
+  background-color: brown;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 5px;;
+}
+
+.movie-item-cls {
+  height: 350px;
+}
+
 
 
 

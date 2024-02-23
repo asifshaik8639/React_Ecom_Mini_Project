@@ -6,20 +6,35 @@ import { Modal as BaseModal } from '@mui/base/Modal';
 
 import {AUTHTOKEN, TMDBURL, OPTIONS} from '../utils/Constants';
 import MovieTrailer from './MovieTrailer';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 export default function ModalContainer({selectedMovieID}) {
   
  const [selectedVideoId, setSelectedVideoId] = useState(null);
   const [open, setOpen] = React.useState(true);
-  const handleClose = () => setOpen(false);
+  const [notAvailable, setNotAvailable] = React.useState(false);
+  const [dialogopen, setDailogOpen] = React.useState(false);
 
   useEffect(() => {
     try {
         if(!!selectedMovieID) {
-            fetch(`${TMDBURL}/${selectedMovieID}/videos?language=en-US`, OPTIONS)
+            fetch(`${TMDBURL}/movie/${selectedMovieID}/videos?language=en-US`, OPTIONS)
             .then(response => response.json())
             .then(response => {
-                setSelectedVideoId(response?.results[0]?.key);
+                if(!!response?.results[0]?.key) {
+                    console.log('key is available => ', response?.results[0]?.key);
+                    setSelectedVideoId(response?.results[0]?.key);
+                    setNotAvailable(false);
+                } else {
+                    console.log('key is not available => ', response?.results[0]?.key);
+                    setNotAvailable(true);
+                    setDailogOpen(true);
+                }
+                
                 setOpen(true);
     
             })
@@ -30,15 +45,28 @@ export default function ModalContainer({selectedMovieID}) {
     };
   }, [selectedMovieID]);
 
+  const handleDailogOpen = () => {
+    setDailogOpen(true);
+  };
+
+  const handleDailogClose = () => {
+    setDailogOpen(false);
+  };
+
+  const handleModalClose = () => {
+    setOpen(false);
+  };
+
+
   return (
     <div className='modal-container-cls'>
         {
-            selectedVideoId && 
+            selectedVideoId !== null && !notAvailable ?
             <Modal
                 aria-labelledby="unstyled-modal-title"
                 aria-describedby="unstyled-modal-description"
                 open={open}
-                onClose={handleClose}
+                onClose={handleModalClose}
                 slots={{ backdrop: StyledBackdrop }}
            >
                 {
@@ -46,7 +74,21 @@ export default function ModalContainer({selectedMovieID}) {
                         <MovieTrailer videoId={selectedVideoId} />
                     </ModalContent>
                 }
-          </Modal>
+           </Modal>
+           :
+           <Dialog
+                open={dialogopen}
+                onClose={handleDailogClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                className='dialog-cls'
+            >
+            <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                   Video is not available at the moment
+                </DialogContentText>
+            </DialogContent>
+           </Dialog>
         }
 
     </div>
