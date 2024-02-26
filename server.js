@@ -15,10 +15,11 @@ app.use(cors({
     credentials: false // If you're using credentials (cookies, headers, etc.)
   }));
 
-const accountSid = 'ACa23aa9b878ca5b57d391cbd189719d1a';
-const authToken = 'a525e337e090ff6790263de722fde865';
-const twilioPhone = '+15169792439';
-const userPhone = '+917601003952'; // Replace with the user's phone number
+//Register with Twilip and Replace with the original accountSid, authToken, twilioPhone, userPhone
+const accountSid = 'xxxxxxxxxxxxxxxxxxxxxxx';
+const authToken = 'xxxxxxxxxxxxxxxxxxxxxxx';
+const twilioPhone = 'xxxxxxxxxxxxxxxxxxxxxxx';
+const userPhone = 'xxxxxxxxxxxxx'; // Replace with the user's phone number
 
 const client = twilio(accountSid, authToken);
 
