@@ -9,4 +9,5 @@ export const OPTIONS = {
       Authorization: AUTHTOKEN
     }
   };
+export const LOGINFAILED = 'Login failed, please try again after some time';
 

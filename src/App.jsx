@@ -9,18 +9,21 @@ import Settings from './components/Settings';
 import Cart from './components/Cart';
 import WIP from './components/WIP';
 import Movies from './components/Movies';
+import Login from './components/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+   console.log('In App jsx ');
 
   return (
     <>
       <PaginationContextWrapper>
         <Routes>
-          <Route path="/" element={<DynamicParentContainer></DynamicParentContainer>}></Route>
+          <Route path="/home" element={<DynamicParentContainer></DynamicParentContainer>}></Route>
           <Route path="/user" element={<User></User>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
           {/* default case */}
-          <Route path="/home" element={ <Navigate to="/" />}></Route>
+          <Route path="/" element={ <Navigate to="/login" />}></Route>
           <Route path="/cart" element={<Cart></Cart>}></Route>
           <Route path="/settings" element={<Settings></Settings>}></Route>
           <Route path="/wip" element={<WIP></WIP>}></Route>
