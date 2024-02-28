@@ -21,7 +21,7 @@ function SearchBar({ sendinputTextVal,
 
   return (
 
-    <div className='header-container'>
+    <div className='header-container background-for-search-bar'>
  
         <Icon id="menu" className='menu-icon-cls'
                       onClick={(e) => onMenuClickHandler(e)} >
@@ -29,7 +29,7 @@ function SearchBar({ sendinputTextVal,
         </Icon>
 
 
-        <div className='search-bar-container'>
+        <div className='search-bar-container '>
              
              <input type='text' 
                      placeholder='search'

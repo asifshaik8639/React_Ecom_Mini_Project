@@ -241,12 +241,16 @@ body {
 }
 
 .header-container #menu{
-  flex: 7%;
-  font-size: 40px;
-  color:black;
-  margin: 30px;
-  padding: 5px;
-  display: block;
+    position: absolute;
+    background: brown;
+    padding: 17px;
+    border-radius: 150px;
+    width: 60px;
+    height: 60px;
+    margin: 30px;
+    color: wheat;
+    left: -10px;
+    top: -10px;
 }
 
 @media screen and (max-width: 992px){
@@ -388,6 +392,13 @@ body {
 
 .movie-item-cls {
   height: 350px;
+}
+
+.background-for-search-bar {
+  background-image: url('./assets/discovery-splashes.jpg');
+  background-size: cover; /* Adjusts the size of the background image */
+  background-position: center; /* Centers the background image */
+  height: 100px; /* Set a height for the div */
 }
 
 
