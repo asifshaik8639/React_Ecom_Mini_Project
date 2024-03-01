@@ -53,7 +53,7 @@ function DynamicParentContainer() {
 
   console.log('value of isSideBarOpen',isSideBarOpen);
   let sidebarStyle = {
-    flex: isSideBarOpen ? '25%' : 0
+    flex: isSideBarOpen ? '25%' : '60px'
   };
 
   return (
