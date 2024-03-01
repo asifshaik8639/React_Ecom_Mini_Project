@@ -70,7 +70,7 @@ export default function ModalContainer({selectedMovieID}) {
                 slots={{ backdrop: StyledBackdrop }}
            >
                 {
-                    <ModalContent sx={{ width: '50vw'}}>
+                    <ModalContent sx={{ width: '80vw'}}>
                         <MovieTrailer videoId={selectedVideoId} />
                     </ModalContent>
                 }
