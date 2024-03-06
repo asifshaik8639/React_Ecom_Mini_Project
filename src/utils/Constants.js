@@ -11,3 +11,5 @@ export const OPTIONS = {
   };
 export const LOGINFAILED = 'Login failed, please try again after some time';
 
+export const CDN_IMAGE_URL = 'https://cdn.discordapp.com/assets/profile_effects/effects/b17d139f2e9/splash/intro.png';
+

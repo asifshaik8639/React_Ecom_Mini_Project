@@ -7,17 +7,21 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShopIcon from '@mui/icons-material/Shop';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import { CDN_IMAGE_URL } from  '../utils/Constants' ; // '../utils/Constants';
 
 function SideDrawer({onIconClickHandler}) {
 
   return (
     <div className='side-drawer-container'>
+
+        <div className='side-drawer-cdn-bg-image'>
+            {/*  this is added to add the background  */}
+        </div>
         <div className='side-drawer-item'>
             <Link name="Home" onClick={(e) => onIconClickHandler(e) } >
                 <ShopIcon fontSize='large' />
                 <label htmlFor=""> Shopping</label> 
             </Link>
-            
         </div>
 
         <div className='side-drawer-item'>
@@ -25,7 +29,6 @@ function SideDrawer({onIconClickHandler}) {
                 <LocalMoviesIcon fontSize='large' />
                 <label htmlFor=""> Movies</label> 
             </Link>
-            
         </div>
 
         <div className='side-drawer-item'>
@@ -33,7 +36,6 @@ function SideDrawer({onIconClickHandler}) {
                 <ContactsIcon fontSize='large'/>
                 <label htmlFor=""> User Profile</label>
             </Link>
-            
         </div>
 
         <div className='side-drawer-item'>

@@ -263,7 +263,6 @@ body {
     display: flex;
     flex-direction: column;
     color: white;
-    padding-top: 20px;
     overflow-x: hidden;
 }
 
@@ -396,6 +395,13 @@ body {
 
 .background-for-search-bar {
   background-image: url('./assets/discovery-splashes.jpg');
+  background-size: cover; /* Adjusts the size of the background image */
+  background-position: center; /* Centers the background image */
+  height: 100px; /* Set a height for the div */
+}
+
+.side-drawer-cdn-bg-image {
+  background-image: url('./assets/cdn-side-drawer-image.png');
   background-size: cover; /* Adjusts the size of the background image */
   background-position: center; /* Centers the background image */
   height: 100px; /* Set a height for the div */
